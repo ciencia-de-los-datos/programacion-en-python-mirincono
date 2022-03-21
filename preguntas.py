@@ -21,7 +21,7 @@ def pregunta_01():
     214
 
     """
-    return
+    return sum([int(z[1]) for z in x])
 
 
 def pregunta_02():
