@@ -15,7 +15,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 def pregunta_01():
     """
-    Retorne la suma de la segunda columna.
+    Retorne la suma de la segunda columna.1
 
     Rta/
     214
