@@ -46,7 +46,9 @@ def pregunta_02():
     ]
 
     """
-    return
+    y = [z[0] for z in x]
+    suma = [(z,y.count(z)) for z in sorted(set(y))]
+    return suma
 
 
 def pregunta_03():
