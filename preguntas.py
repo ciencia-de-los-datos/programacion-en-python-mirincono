@@ -91,7 +91,10 @@ def pregunta_04():
     ]
 
     """
-    return
+    y = sorted([z[2].split("-")[1] for z in x])
+    suma = [(z,y.count(z)) for z in sorted(set(y))]
+
+    return suma
 
 
 def pregunta_05():
