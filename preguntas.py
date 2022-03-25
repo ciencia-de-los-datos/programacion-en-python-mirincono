@@ -120,7 +120,19 @@ def pregunta_05():
     ]
 
     """
-    return
+    y = [z[0] for z in x]
+    number = [z[1] for z in x]
+    suma = [[z,int(min(number)),int(max(number))] for z in sorted(set(y))]
+    for z in suma:
+        for row in x:
+            if row[0] == z[0]:
+                if int(row[1]) > z[1]:
+                    z[1] = int(row[1])
+                if int(row[1]) < z[2]:
+                    z[2] = int(row[1])
+    
+    suma = [tuple(z) for z in suma]    
+    return suma
 
 
 def pregunta_06():
@@ -278,3 +290,4 @@ def pregunta_12():
 
     """
     return
+
