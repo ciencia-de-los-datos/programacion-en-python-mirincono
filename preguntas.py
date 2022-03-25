@@ -204,7 +204,18 @@ def pregunta_07():
     ]
 
     """
-    return
+    y = sorted(set([int(z[1]) for z in x]))
+    lista = []
+
+    for z in y:
+        lista2 = []
+        for i in x:
+            if z == int(i[1]):
+                lista2.append(i[0])
+        lista.append(lista2)
+
+    suma = list(zip(y,lista))
+    return suma
 
 
 def pregunta_08():
