@@ -275,7 +275,22 @@ def pregunta_09():
     }
 
     """
-    return
+    y = []
+    y = [z[4] for z in x]
+    clave = []
+    w = []
+    suma = {}
+
+    for i in y:
+        w.append(i.split(","))
+    for j in w:
+        for i in j:
+            clave.append(i.split(":")[0])
+    
+    for o in [[p,clave.count(p)] for p in sorted(set(clave))]:
+        key, value = o[0], o[1]
+        suma[key] = value
+    return suma
 
 
 def pregunta_10():
