@@ -309,9 +309,10 @@ def pregunta_10():
         ("E", 3, 3),
     ]
 
-
     """
-    return
+    y = ([z[0] for z in x])
+    suma = [(o[0],len(o[3].split(",")),len(o[4].split(","))) for o in x]
+    return suma
 
 
 def pregunta_11():
