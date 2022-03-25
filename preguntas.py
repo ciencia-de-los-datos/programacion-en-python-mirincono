@@ -351,7 +351,32 @@ def pregunta_12():
     }
 
     """
-    return
+
+    y2 = [z[0] for z in x]
+    y = [z[4] for z in x]
+    w = []
+    valor = []
+    final = {}
+    for i in y:
+        w.append(i.split(","))
+    for z in w:
+        lista = []
+        for i in z:
+            lista.append(int(i.split(":")[1]))
+        valor.append(sum(lista))
+    
+    xx = list(zip(y2,valor))
+    xxx = [z[0] for z in xx]
+    suma = [[z,0] for z in sorted(set(xxx))]
+
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+    for o in [z for z in suma]:
+        key, value = o[0], o[1]
+        final[key] = value
+    return final
 
 
 
