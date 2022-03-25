@@ -73,7 +73,7 @@ def pregunta_03():
         for row in x:
             if row[0] == z[0]:
                 z[1] += int(row[1])
-                suma = [tuple(z) for z in suma]
+    suma = [tuple(z) for z in suma]
     return suma
 
 
