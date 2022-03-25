@@ -157,7 +157,30 @@ def pregunta_06():
     ]
 
     """
-    return
+
+    y = [z[4] for z in x]
+    clave = []
+    valor = []
+    w = []
+    for i in y:
+        w.append(i.split(","))
+        for z in w:
+            for i in z:
+                clave.append(i.split(":")[0])
+                valor.append(i.split(":")[1])
+    xx = list(zip(clave,valor))
+
+    suma = [[z,int(max(valor)),int(min(valor))] for z in sorted(set(clave))]
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                if int(row[1]) > z[2]:
+                    z[2] = int(row[1])
+                if int(row[1]) < z[1]:
+                    z[1] = int(row[1])
+    
+    suma = [tuple(z) for z in suma]   
+    return suma
 
 
 def pregunta_07():
@@ -290,4 +313,6 @@ def pregunta_12():
 
     """
     return
+
+
 
