@@ -66,7 +66,15 @@ def pregunta_03():
     ]
 
     """
-    return
+
+    y = [z[0] for z in x]
+    suma = [[z,0] for z in sorted(set(y))]
+    for z in suma:
+        for row in x:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+                suma = [tuple(z) for z in suma]
+    return suma
 
 
 def pregunta_04():
