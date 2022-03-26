@@ -333,7 +333,31 @@ def pregunta_11():
 
 
     """
-    return
+
+    lista = []
+    lista2 = []
+    final = {}
+    y = [[z[1],z[3].split(",")]for z in x]
+
+    for n in y:
+        for w in range(len(n[1])):
+            lista.append(n[0])
+        
+    for n in y:
+        lista2 = lista2 + n[1]
+    
+    xx = list(zip(lista2,lista))
+    xxx = [z[0] for z in xx]
+    suma = [[z,0] for z in sorted(set(xxx))]
+
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+    for o in [z for z in suma]:
+        key, value = o[0], o[1]
+        final[key] = value
+    return final
 
 
 def pregunta_12():
