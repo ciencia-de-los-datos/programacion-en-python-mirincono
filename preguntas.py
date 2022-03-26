@@ -12,6 +12,11 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+with open("data.csv", "r") as file:
+    x = file.readlines()
+
+x = [row.replace("\n", "") for row in x]
+x = [z.split("\t") for z in x]
 
 def pregunta_01():
     """
@@ -21,7 +26,9 @@ def pregunta_01():
     214
 
     """
-    return
+
+    resultado = sum([int(z[1]) for z in x])
+    return resultado
 
 
 def pregunta_02():
@@ -39,7 +46,9 @@ def pregunta_02():
     ]
 
     """
-    return
+    y = [z[0] for z in x]
+    suma = [(z,y.count(z)) for z in sorted(set(y))]
+    return suma
 
 
 def pregunta_03():
@@ -57,7 +66,15 @@ def pregunta_03():
     ]
 
     """
-    return
+
+    y = [z[0] for z in x]
+    suma = [[z,0] for z in sorted(set(y))]
+    for z in suma:
+        for row in x:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+    suma = [tuple(z) for z in suma]
+    return suma
 
 
 def pregunta_04():
@@ -82,7 +99,10 @@ def pregunta_04():
     ]
 
     """
-    return
+    y = sorted([z[2].split("-")[1] for z in x])
+    suma = [(z,y.count(z)) for z in sorted(set(y))]
+
+    return suma
 
 
 def pregunta_05():
@@ -100,7 +120,19 @@ def pregunta_05():
     ]
 
     """
-    return
+    y = [z[0] for z in x]
+    number = [z[1] for z in x]
+    suma = [[z,int(min(number)),int(max(number))] for z in sorted(set(y))]
+    for z in suma:
+        for row in x:
+            if row[0] == z[0]:
+                if int(row[1]) > z[1]:
+                    z[1] = int(row[1])
+                if int(row[1]) < z[2]:
+                    z[2] = int(row[1])
+    
+    suma = [tuple(z) for z in suma]    
+    return suma
 
 
 def pregunta_06():
@@ -125,7 +157,30 @@ def pregunta_06():
     ]
 
     """
-    return
+
+    y = [z[4] for z in x]
+    clave = []
+    valor = []
+    w = []
+    for i in y:
+        w.append(i.split(","))
+        for z in w:
+            for i in z:
+                clave.append(i.split(":")[0])
+                valor.append(i.split(":")[1])
+    xx = list(zip(clave,valor))
+
+    suma = [[z,int(max(valor)),int(min(valor))] for z in sorted(set(clave))]
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                if int(row[1]) > z[2]:
+                    z[2] = int(row[1])
+                if int(row[1]) < z[1]:
+                    z[1] = int(row[1])
+    
+    suma = [tuple(z) for z in suma]   
+    return suma
 
 
 def pregunta_07():
@@ -149,7 +204,18 @@ def pregunta_07():
     ]
 
     """
-    return
+    y = sorted(set([int(z[1]) for z in x]))
+    lista = []
+
+    for z in y:
+        lista2 = []
+        for i in x:
+            if z == int(i[1]):
+                lista2.append(i[0])
+        lista.append(lista2)
+
+    suma = list(zip(y,lista))
+    return suma
 
 
 def pregunta_08():
@@ -174,7 +240,19 @@ def pregunta_08():
     ]
 
     """
-    return
+    y = sorted(set([int(z[1]) for z in x]))
+    lista = []
+
+    for z in y:
+        lista2 = []
+        for i in x:
+            if z == int(i[1]) and i[0] not in lista2:
+                lista2.append(i[0])
+        lista2 = sorted(lista2)
+        lista.append(lista2)
+
+    suma = list(zip(y,lista))
+    return suma
 
 
 def pregunta_09():
@@ -197,7 +275,22 @@ def pregunta_09():
     }
 
     """
-    return
+    y = []
+    y = [z[4] for z in x]
+    clave = []
+    w = []
+    suma = {}
+
+    for i in y:
+        w.append(i.split(","))
+    for j in w:
+        for i in j:
+            clave.append(i.split(":")[0])
+    
+    for o in [[p,clave.count(p)] for p in sorted(set(clave))]:
+        key, value = o[0], o[1]
+        suma[key] = value
+    return suma
 
 
 def pregunta_10():
@@ -216,9 +309,10 @@ def pregunta_10():
         ("E", 3, 3),
     ]
 
-
     """
-    return
+    y = ([z[0] for z in x])
+    suma = [(o[0],len(o[3].split(",")),len(o[4].split(","))) for o in x]
+    return suma
 
 
 def pregunta_11():
@@ -239,7 +333,31 @@ def pregunta_11():
 
 
     """
-    return
+
+    lista = []
+    lista2 = []
+    final = {}
+    y = [[z[1],z[3].split(",")]for z in x]
+
+    for n in y:
+        for w in range(len(n[1])):
+            lista.append(n[0])
+        
+    for n in y:
+        lista2 = lista2 + n[1]
+    
+    xx = list(zip(lista2,lista))
+    xxx = [z[0] for z in xx]
+    suma = [[z,0] for z in sorted(set(xxx))]
+
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+    for o in [z for z in suma]:
+        key, value = o[0], o[1]
+        final[key] = value
+    return final
 
 
 def pregunta_12():
@@ -257,4 +375,32 @@ def pregunta_12():
     }
 
     """
-    return
+
+    y2 = [z[0] for z in x]
+    y = [z[4] for z in x]
+    w = []
+    valor = []
+    final = {}
+    for i in y:
+        w.append(i.split(","))
+    for z in w:
+        lista = []
+        for i in z:
+            lista.append(int(i.split(":")[1]))
+        valor.append(sum(lista))
+    
+    xx = list(zip(y2,valor))
+    xxx = [z[0] for z in xx]
+    suma = [[z,0] for z in sorted(set(xxx))]
+
+    for z in suma:
+        for row in xx:
+            if row[0] == z[0]:
+                z[1] += int(row[1])
+    for o in [z for z in suma]:
+        key, value = o[0], o[1]
+        final[key] = value
+    return final
+
+
+
